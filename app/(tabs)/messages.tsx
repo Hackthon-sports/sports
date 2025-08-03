@@ -35,9 +35,9 @@ const getTimeAgo = (timestamp: number): string => {
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
   if (seconds < 60) return "Just now";
-  if (minutes < 60) return `${minutes}m ago`;
-  if (hours < 24) return `${hours}h ago`;
-  return `${days}d ago`;
+  if (minutes < 60) return `Active ${minutes}m ago`;
+  if (hours < 24) return `Active ${hours}h ago`;
+  return `Active ${days}d ago`;
 };
 
 export default function MessagesScreen() {
