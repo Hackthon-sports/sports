@@ -17,7 +17,7 @@ export default function Layout() {
           const icons = {
             home: 'home-outline',
             messages: 'chatbubble-ellipses-outline',
-            tournments: 'trophy-outline',
+            Tournament: 'trophy-outline',
             stores: 'cart-outline',
             profile: 'person-outline',
           };
@@ -30,7 +30,7 @@ export default function Layout() {
     >
       <Tabs.Screen name="home" options={{ title: 'Home' ,headerShown:false}} />
       <Tabs.Screen name="messages" options={{ title: 'Messages' ,headerShown:false}} />
-      <Tabs.Screen name="tournments" options={{ title: 'Tournaments',headerShown:false }} />
+      <Tabs.Screen name="Tournament" options={{ title: 'Tournament',headerShown:false }} />
       <Tabs.Screen name="stores" options={{ title: 'Stores',headerShown:false }} />
       <Tabs.Screen name="profile" options={{ title: 'Profile',headerShown:false }} />
     </Tabs>
