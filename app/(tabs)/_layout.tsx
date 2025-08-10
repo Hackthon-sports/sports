@@ -1,45 +1,45 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+    return (
+        <Tabs
+            screenOptions={({ route }) => ({
+                headerShown: false,
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName: keyof typeof Ionicons.glyphMap;
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+                    switch (route.name) {
+                        case 'index':
+                            iconName = focused ? 'home' : 'home-outline';
+                            break;
+                        case 'messages':
+                            iconName = focused ? 'chatbox' : 'chatbox-outline';
+                            break;
+                        case 'tournaments':
+                            iconName = focused ? 'trophy' : 'trophy-outline';
+                            break;
+                        case 'store':
+                            iconName = focused ? 'cart' : 'cart-outline';
+                            break;
+                        case 'profile':
+                            iconName = focused ? 'person' : 'person-outline';
+                            break;
+                        default:
+                            iconName = 'ellipse';
+                    }
+
+                    return <Ionicons name={iconName} size={size} color="#7C3AED" />;
+                },
+                tabBarActiveTintColor: '#7C3AED',
+                tabBarInactiveTintColor: 'gray',
+            })}
+        >
+            <Tabs.Screen name="index" />
+            <Tabs.Screen name="messages" />
+            <Tabs.Screen name="tournaments" />
+            <Tabs.Screen name="store" />
+            <Tabs.Screen name="profile" />
+        </Tabs>
+    );
 }
